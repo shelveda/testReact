@@ -8,6 +8,8 @@ import SeasonDisplay from './SeasonDisplay';
 import Contact from './components/Contact';
 import Header from './components/Header';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const App = () => {
   return (
     <div className="ui container comments">
@@ -70,8 +72,15 @@ class App3 extends React.Component {
 
     return (
       <div className="App">
-        <Header />
-        <Contact />
+        <Header branding="Contact manager" />
+        <Contact
+          name="saeed davari"
+          email="shelveda.com"
+          phone="555-555-55555"
+        />
+        <Contact name="sheloo" email="saeed2.com" phone="dddf55-55555" />
+        <Contact name="sheloo" email="saeed2.com" phone="dddf55-55555" />
+        <Contact name="sheloo" email="saeed2.com" phone="dddf55-55555" />
       </div>
     );
   }
