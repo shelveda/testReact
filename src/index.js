@@ -82,10 +82,6 @@ import LikeHeart from './components/common/Like';
 // }
 
 class App4 extends Component {
-  constructor() {
-    super();
-    console.log('App - Constructor');
-  }
   state = {
     counters: [
       { id: 1, value: 4 },
@@ -97,9 +93,7 @@ class App4 extends Component {
     ]
   };
 
-  componentDidMount() {
-    console.log('App- mounted');
-  }
+  componentDidMount() {}
   handleDelete = counterId => {
     const counters = this.state.counters.filter(c => c.id !== counterId);
     this.setState({ counters });
@@ -130,7 +124,6 @@ class App4 extends Component {
   };
 
   render() {
-    console.log('App-rendered');
     return (
       <React.Fragment>
         <Navbar

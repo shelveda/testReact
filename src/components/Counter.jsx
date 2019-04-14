@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-  componentDidUpdate(prevProps, prevState) {
-    console.log('prevProps', prevProps);
-    console.log('prevState', prevState);
-  }
-
-  componentWillUnmount() {
-    console.log('counter - unmount');
-  }
   render() {
     return (
       <div className="row">
