@@ -8,11 +8,12 @@ import Movies from './components/Movies';
 
 // import Contacts from './components/Contacts';
 // import Header from './components/Header';
-import Counters from './components/Counters';
+// import Counters from './components/Counters';
+
+// import Navbar from './components/Navbar';
+// import LikeHeart from './components/common/Like';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar';
-import LikeHeart from './components/common/Like';
 
 // const App = () => {
 //   return (
@@ -81,68 +82,68 @@ import LikeHeart from './components/common/Like';
 //   }
 // }
 
-class App4 extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 4 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 2 },
-      { id: 5, value: 0 },
-      { id: 6, value: 0 }
-    ]
-  };
+// class App4 extends Component {
+//   state = {
+//     counters: [
+//       { id: 1, value: 4 },
+//       { id: 2, value: 0 },
+//       { id: 3, value: 0 },
+//       { id: 4, value: 2 },
+//       { id: 5, value: 0 },
+//       { id: 6, value: 0 }
+//     ]
+//   };
 
-  componentDidMount() {}
-  handleDelete = counterId => {
-    const counters = this.state.counters.filter(c => c.id !== counterId);
-    this.setState({ counters });
-  };
+//   componentDidMount() {}
+//   handleDelete = counterId => {
+//     const counters = this.state.counters.filter(c => c.id !== counterId);
+//     this.setState({ counters });
+//   };
 
-  handleReset = () => {
-    const counters = this.state.counters.map(c => {
-      c.value = 0;
-      return c;
-    });
+//   handleReset = () => {
+//     const counters = this.state.counters.map(c => {
+//       c.value = 0;
+//       return c;
+//     });
 
-    this.setState({ counters });
-  };
+//     this.setState({ counters });
+//   };
 
-  handleIncrement = counter => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value++;
-    this.setState({ counters });
-  };
-  handleDecrement = counter => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value--;
-    this.setState({ counters });
-  };
+//   handleIncrement = counter => {
+//     const counters = [...this.state.counters];
+//     const index = counters.indexOf(counter);
+//     counters[index] = { ...counter };
+//     counters[index].value++;
+//     this.setState({ counters });
+//   };
+//   handleDecrement = counter => {
+//     const counters = [...this.state.counters];
+//     const index = counters.indexOf(counter);
+//     counters[index] = { ...counter };
+//     counters[index].value--;
+//     this.setState({ counters });
+//   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <Navbar
-          totalCounters={this.state.counters.filter(c => c.value > 0).length}
-        />
-        <LikeHeart />
-        <main className="container">
-          <Counters
-            counters={this.state.counters}
-            onReset={this.handleReset}
-            onIncrement={this.handleIncrement}
-            onDelete={this.handleDelete}
-            onDecrement={this.handleDecrement}
-          />
-        </main>
-      </React.Fragment>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <React.Fragment>
+//         <Navbar
+//           totalCounters={this.state.counters.filter(c => c.value > 0).length}
+//         />
+//         <LikeHeart />
+//         <main className="container">
+//           <Counters
+//             counters={this.state.counters}
+//             onReset={this.handleReset}
+//             onIncrement={this.handleIncrement}
+//             onDelete={this.handleDelete}
+//             onDecrement={this.handleDecrement}
+//           />
+//         </main>
+//       </React.Fragment>
+//     );
+//   }
+// }
 
 class App5 extends Component {
   state = {};
@@ -158,5 +159,5 @@ class App5 extends Component {
 // ReactDOM.render(<App />, document.querySelector('#root'));
 // ReactDOM.render(<App2 />, document.querySelector('#root2'));
 // ReactDOM.render(<App3 />, document.querySelector('#root3'));
-ReactDOM.render(<App4 />, document.querySelector('#root4'));
+// ReactDOM.render(<App4 />, document.querySelector('#root4'));
 ReactDOM.render(<App5 />, document.querySelector('#root5'));
