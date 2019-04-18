@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Route, Switch } from 'react-router-dom';
 import './grainder.css';
-import AppCard from './CappCard/AppCard';
+// import AppCard from './CappCard/AppCard';
 
 import SeasonDisplay from './SeasonDisplay';
 
@@ -13,7 +13,7 @@ class Grainder extends Component {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
         />
-        <AppCard />
+        {/* <AppCard /> */}
         <SeasonDisplay />
       </React.Fragment>
     );

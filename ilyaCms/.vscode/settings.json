@@ -1,0 +1,14 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    "public\\manifest.json": true,
+    "public\\favicon.ico": true,
+    "src\\App.test.js": true,
+    "src\\serviceWorker.js": true,
+    "package.json": true,
+    ".gitignore": true,
+    "README.md": true,
+    "package-lock.json": true,
+    ".vscode": true
+  }
+}
