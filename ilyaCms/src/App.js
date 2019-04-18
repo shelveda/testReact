@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-import Home from './pages/laptop/home';
+import { Route, Switch } from 'react-router-dom';
+import asyncComponent from './components/AsyncComponent';
+import './App.css';
+import NavigationAll from './NavigationAll';
 
-class NavigationAll extends Component {
-  render() {
-    return <h1>navhere</h1>;
-  }
-}
+const AsyncHome = asyncComponent(() => import('./pages/laptop/home'));
+const AsyncHomeM = asyncComponent(() => import('./pages/mobile/home_m'));
+const AsyncGrainder = asyncComponent(() =>
+  import('./otherCourses/graider/Grainder')
+);
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <NavigationAll /> */}
-
-        <Home />
+        <NavigationAll />
+        <div className="main-wrapper" id="main-wrapper">
+          <Switch>
+            <Route path="/cms/m" component={AsyncHomeM} />
+            <Route path="/grainder" component={AsyncGrainder} />
+            <Route path="/cms" component={AsyncHome} />
+          </Switch>
+        </div>
       </React.Fragment>
     );
   }

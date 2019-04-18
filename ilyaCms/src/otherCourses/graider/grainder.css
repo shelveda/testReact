@@ -1,0 +1,46 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  outline: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: ' ';
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+html {
+  background-color: #eee;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 58%;
+  }
+}
+
+body {
+  display: grid;
+  overflow: auto;
+
+  grid-template-columns: minmax(0rem, 1fr) minmax(min-content, 1920px) minmax(
+      0rem,
+      1fr
+    );
+  margin-top: 5px;
+  /* margin-left: 1rem; */
+  direction: ltr;
+  font-family: yekan, Roboto;
+  color: #58585a;
+  font-weight: 300;
+  background-color: #eee;
+}

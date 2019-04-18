@@ -12,25 +12,25 @@
 
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="style-base.css" />
 
     <title>React App</title>
   </head>
+  <style>
+    #root {
+      grid-column: 2/3;
+    }
+    #root > * {
+      padding: 1rem;
+      font-size: 3rem;
+    }
+  </style>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <div id="mute" class="none" onclick="menuColClose()"></div>
 
     <div id="root"></div>
-    <style>
-      #root {
-        grid-column: 2/3;
-      }
-      #root > * {
-        padding: 1rem;
-        font-size: 3rem;
-      }
-    </style>
+
     <div class="ilya-rights">
       <p>تمامی حقوق متعلق به ایلیا ایده می باشد.</p>
     </div>

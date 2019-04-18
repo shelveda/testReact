@@ -6,15 +6,15 @@ import './css/all.min.css';
 class HomeM extends Component {
   render() {
     return (
-      <div className="main-container" id="main-wrapper">
-        <section className="header">Header</section>
+      <React.Fragment>
+        <section className="header">Header-m</section>
 
-        <section className="main">Main</section>
+        <section className="main">Main-m</section>
 
-        <section className="top-footer">top-footer</section>
+        <section className="top-footer">top-footer-m</section>
 
-        <footer className="footer">footer</footer>
-      </div>
+        <footer className="footer">footer-m</footer>
+      </React.Fragment>
     );
   }
 }
