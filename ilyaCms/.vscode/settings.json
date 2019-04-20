@@ -1,14 +1,16 @@
 {
   "files.exclude": {
     "node_modules": true,
-    "public\\manifest.json": true,
     "public\\favicon.ico": true,
     "src\\App.test.js": true,
-    "src\\serviceWorker.js": true,
-    "package.json": true,
     ".gitignore": true,
     "README.md": true,
     "package-lock.json": true,
-    ".vscode": true
+    ".vscode": true,
+    "src\\pages": true,
+    "src\\components": true,
+    "src\\otherCourses\\graider\\CappCard": true,
+    "src\\otherCourses\\graider\\SeasonDisplay.jsx": true,
+    "src\\otherCourses\\graider\\components\\Spinner.jsx": true
   }
 }

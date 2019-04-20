@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Spinner from './components/Spinner';
 
 const seasonConfig = {
   summer: {
@@ -37,21 +38,26 @@ class SeasonDisplay extends Component {
       err => this.setState({ errorMessage: err.message })
     );
   }
-  render() {
+
+  renderContent() {
     const { errorMessage, lat } = this.state;
 
     if (errorMessage && !lat) {
-      return <div style={{ fontSize: '16px' }}>Error: {errorMessage}</div>;
+      return <div>Error: {errorMessage}</div>;
     }
     if (!errorMessage && lat) {
       return (
-        <div style={{ fontSize: '16px' }}>
+        <div>
           <Display season={getSeason({ lat }, 1)} />
         </div>
       );
     }
 
-    return <div>Loading!</div>;
+    return <Spinner />;
+  }
+
+  render() {
+    return <div style={{ fontSize: '16px' }}>{this.renderContent()}</div>;
   }
 }
 
