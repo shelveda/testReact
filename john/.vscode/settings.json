@@ -1,0 +1,22 @@
+{
+  "editor.minimap.enabled": false,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.statusBar.visible": true,
+  "workbench.activityBar.visible": true,
+  "editor.wordWrap": "on",
+  "window.zoomLevel": -1,
+  "explorer.openEditors.visible": 12,
+  "editor.fontFamily": "source code pro",
+  "editor.fontSize": 16,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "prettier.singleQuote": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+    "javascript": "html"
+  },
+  "workbench.colorTheme": "Egoist One"
+}

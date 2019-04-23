@@ -44,3 +44,20 @@ body {
   font-weight: 300;
   background-color: #eee;
 }
+.g-nav {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  grid-column-gap: 5px;
+  justify-items: center;
+  align-items: center;
+  border-bottom: 1px solid sandybrown;
+  margin-bottom: 20px;
+}
+.g-nav__item {
+  align-self: center;
+  justify-self: center;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}

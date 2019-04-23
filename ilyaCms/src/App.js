@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import asyncComponent from './components/AsyncComponent';
 import './App.css';
 import NavigationAll from './NavigationAll';
-import Grainder from './otherCourses/graider/Grainder';
 
 const AsyncHome = asyncComponent(() => import('./pages/laptop/home'));
 const AsyncHomeM = asyncComponent(() => import('./pages/mobile/home_m'));
@@ -21,7 +20,7 @@ class App extends Component {
             <Route path="/cms/m" component={AsyncHomeM} />
             <Route path="/grainder" component={AsyncGrainder} />
             <Route path="/cms" component={AsyncHome} />
-            <Route path="/ccc" component={Grainder} />
+            <Route path="/ccc" component={AsyncGrainder} />
           </Switch>
         </div>
       </React.Fragment>
