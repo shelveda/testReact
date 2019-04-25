@@ -13,6 +13,12 @@
     "src\\components": true,
     "public\\favicon.ico": true,
     "public\\manifest.json": true,
-    "init_widget": true
+    "init_widget": true,
+    "src\\otherCourses\\graider\\CappCard": true,
+    "src\\otherCourses\\graider\\components": true,
+    "src\\otherCourses\\graider\\reducers": true,
+    "src\\otherCourses\\graider\\actions": true,
+    "src\\otherCourses\\graider\\Pics.jsx": true,
+    "src\\otherCourses\\graider\\SeasonDisplay.jsx": true
   }
 }
