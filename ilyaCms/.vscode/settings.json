@@ -1,24 +1,9 @@
 {
   "files.exclude": {
     ".vscode": true,
-    "node_modules": true,
-    "src\\pages": true,
-    "package.json": true,
     "README.md": true,
     "package-lock.json": true,
-    ".gitignore": true,
-    "src\\serviceWorker.js": true,
-    "src\\App.test.js": true,
-    "src\\otherCourses\\api": true,
-    "src\\components": true,
-    "public\\favicon.ico": true,
     "public\\manifest.json": true,
-    "init_widget": true,
-    "src\\otherCourses\\graider\\CappCard": true,
-    "src\\otherCourses\\graider\\components": true,
-    "src\\otherCourses\\graider\\reducers": true,
-    "src\\otherCourses\\graider\\actions": true,
-    "src\\otherCourses\\graider\\Pics.jsx": true,
-    "src\\otherCourses\\graider\\SeasonDisplay.jsx": true
+    "init_widget": true
   }
 }
