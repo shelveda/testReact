@@ -111,8 +111,6 @@ class IlyaMenu {
 
 saeed = new IlyaMenu();
 saeed.setMenuRoot(document.querySelector('#root2'));
-console.log(saeed.getMenuRoot());
 
 saeed.JSONGetter('https://ilyaidea.ir/api/ad/categories?category=');
-console.log(saeed.getMenuData());
 // saeed.JSONGetter();
