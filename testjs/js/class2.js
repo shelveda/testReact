@@ -70,10 +70,10 @@ class IlyaMenuGetSet {
 }
 
 class parseItems extends IlyaMenuGetSet {
-  constructor(root) {
+  constructor(root, name) {
     super();
     this.root = document.querySelector(root);
-    this.name = '#root';
+    this.name = name;
   }
 
   setDataAJAX = baseURL => {
@@ -81,33 +81,34 @@ class parseItems extends IlyaMenuGetSet {
   };
 
   renderOutput = id => {
-    let base = this.data.filter(item => item.id == id)[0];
+    let base = { ...this.data.filter(item => item.id == id)[0] };
     base.id = base.id + this.name;
-    let children = this.data.filter(item => item.parent_id == id);
+
+    const dataChildren = this.data
+      .filter(item => item.parent_id == id)
+      .map(child => ({ ...child }));
+    const children = dataChildren.map(a => ({ ...a }));
     children.map(child => (child.id = child.id + this.name));
 
     let parent = {};
     let out = {};
 
     if (base.parent_id) {
-      parent = this.data.filter(item => item.id == base.parent_id)[0];
+      parent = { ...this.data.filter(item => item.id == base.parent_id)[0] };
       parent.id = parent.id + this.name;
       out = { base, parent, children };
       return out;
     }
 
     out = { base, parent: null, children };
-
-    console.log(out);
-
     return out;
   };
 
   liAndACreator = (parent, className, text, id, icon) => {
     let li = document.createElement('li');
     let a = document.createElement('a');
-    a.className = className;
-    a.id = id;
+    li.className = className;
+    li.id = id;
     a.textContent = text;
     if (icon == 'right') {
       li.innerHTML = '<i class="fal fa-caret-right icon-right"></i>';
@@ -115,18 +116,31 @@ class parseItems extends IlyaMenuGetSet {
     if (icon == 'left') {
       li.innerHTML = '<i class="fal fa-caret-left icon-left"></i>';
     }
+    li.setAttribute('role', 'option');
     li.appendChild(a);
+    li.addEventListener('click', () => {
+      this.handleMenuClick(li);
+    });
     parent.appendChild(li);
   };
 
   listMaker = input => {
+    if (this.root.children[0]) {
+      this.root.children[0].remove();
+    }
     const { base, children, parent } = input;
 
     let ul = document.createElement('ul');
     this.root.appendChild(ul);
 
     if (parent) {
-      this.liAndACreator(ul, 'ilya-menu__back', parent.title, parent.id);
+      this.liAndACreator(
+        ul,
+        'ilya-menu__back',
+        parent.title,
+        parent.id,
+        'right'
+      );
     }
 
     this.liAndACreator(ul, 'ilya-menu__header', base.title, base.id);
@@ -135,12 +149,17 @@ class parseItems extends IlyaMenuGetSet {
       this.liAndACreator(ul, 'ilya-menu__item', child.title, child.id, 'left')
     );
   };
+  handleMenuClick = input => {
+    const id = input.id[0];
+    this.listMaker(this.renderOutput(id));
+  };
 }
 
-hello = new parseItems('#root4');
+menu1 = new parseItems('#root1', 'saeed');
+menu1.setData(input);
+menu1.listMaker(menu1.renderOutput(1));
 
-hello.setData(input);
-hello.listMaker(hello.renderOutput(4));
+//   });
+// });
 
-let sss = 'saeed';
-ss = sss.slice(1);
+// allInfo.addEventListener('click', onClick);

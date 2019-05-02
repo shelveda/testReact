@@ -109,8 +109,8 @@ class IlyaMenu {
   };
 }
 
-saeed = new IlyaMenu();
-saeed.setMenuRoot(document.querySelector('#root2'));
+// saeed = new IlyaMenu();
+// saeed.setMenuRoot(document.querySelector('#root2'));
 
-saeed.JSONGetter('https://ilyaidea.ir/api/ad/categories?category=');
+// saeed.JSONGetter('https://ilyaidea.ir/api/ad/categories?category=');
 // saeed.JSONGetter();

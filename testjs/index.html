@@ -12,16 +12,23 @@
 </head>
 
 <body>
-  <h1 onClick="display()"> جستجو</h1>
-  <!-- <div id="root" class="ilya-menu" ></div> -->
+  
+  <div id="root1" class="ilya-menu" ></div>
+</br>
 </br>
   <div id="root2" class="ilya-menu" ></div>
 </br>
 </br>
-  <div id="root3" class="ilya-menu" ></div>
-</br>
-</br>
-<div id="root4" class="ilya-menu" ></div>
+
+
+
+<h2>JavaScript addEventListener()</h2>
+
+<p>This example uses the addEventListener() method to attach a click event to a button.</p>
+
+<button id="myBtn">Try it</button>
+
+<p id="demo"></p>
  
   <!-- <h3 id="300" onClick="JSONGetter(link2,)">JSON</h3> -->
 
@@ -30,11 +37,12 @@
   <script src="js/class.js"></script>
   <script src="js/class2.js"></script>
   <script>
-
-    
-    
-  
-  </script>
+      document.getElementById("myBtn").addEventListener("click", displayDate);
+      
+      function displayDate() {
+        document.getElementById("demo").innerHTML = Date();
+      }
+      </script>
 </body>
 
 </html>

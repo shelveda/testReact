@@ -44,13 +44,13 @@ body {
 .ilya-menu ul {
   list-style: none;
   width: 100%;
-  transition: all 1s;
+  padding: 1rem;
   /* padding: 1rem; */
 }
 .ilya-menu ul li {
   position: relative;
   padding: 1rem;
-  transition: all 1s;
+  cursor: pointer;
 }
 
 .ilya-menu a {
