@@ -36,9 +36,19 @@ body {
 
 .ilya-menu {
   font-size: 2rem;
+  margin: 1rem 1rem;
+
+  width: 250px;
+}
+.ilya-menu-select {
   background-color: #f9f7f1;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-  width: 250px;
+  margin-bottom: 1rem;
+}
+
+.ilya-menu-content {
+  background-color: #f9f7f1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .ilya-menu ul {
@@ -63,4 +73,8 @@ body {
 .icon-left {
   position: absolute;
   left: 0;
+}
+
+.dnone {
+  display: none;
 }
