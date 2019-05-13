@@ -1,0 +1,16 @@
+{
+  "git.ignoreLimitWarning": true,
+  "files.exclude": {
+    "node_modules": true,
+    ".vscode": true,
+    "README.md": true,
+    "package-lock.json": true,
+    "package.json": true,
+    "proFiles": true,
+    "public\\favicon.ico": true,
+    "public\\manifest.json": true,
+    "src\\App.test.js": true,
+    "src\\logo.svg": true,
+    "src\\serviceWorker.js": true
+  }
+}

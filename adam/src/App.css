@@ -1,0 +1,43 @@
+.App {
+  text-align: right;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  outline: none;
+}
+
+html {
+  background-color: #eee;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.8rem;
+  overflow: auto;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* margin-left: 1rem; */
+  direction: rtl;
+
+  color: #58585a;
+  font-weight: 400;
+  background-color: #eee;
+}
+
+#root {
+  margin: 1rem;
+}
+
+ul {
+  list-style: none;
+  margin: 1rem;
+}
+
+li {
+  margin: 0.5rem;
+}
