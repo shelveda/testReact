@@ -1,55 +1,6 @@
 import React, { Component } from 'react';
-
-let input = [
-  {
-    id: 1,
-    title: 'همه',
-    parent_id: null,
-    count_child: 3
-  },
-  {
-    id: 2,
-    title: 'املاک',
-    parent_id: 1,
-    count_child: 0
-  },
-  {
-    id: 3,
-    title: 'وسایل نقلیه',
-    parent_id: 1,
-    count_child: 0
-  },
-  {
-    id: 4,
-    title: 'لوازم الکترونیکی',
-    parent_id: 1,
-    count_child: 2
-  },
-  {
-    id: 5,
-    title: 'رایانه',
-    parent_id: 4,
-    count_child: 0
-  },
-  {
-    id: 6,
-    title: 'کنسول',
-    parent_id: 4,
-    count_child: 2
-  },
-  {
-    id: 7,
-    title: 'ps4',
-    parent_id: 6,
-    count_child: 0
-  },
-  {
-    id: 8,
-    title: 'xbox',
-    parent_id: 6,
-    count_child: 0
-  }
-];
+import './Menu.css';
+// import _ from 'lodash';
 
 const isSearched = searchTerm => {
   return function(item) {
@@ -59,9 +10,27 @@ const isSearched = searchTerm => {
 
 class Menu extends Component {
   state = {
-    input,
+    result: [],
+    input: [],
     show: [],
     searchTitle: ''
+  };
+
+  componentDidMount() {
+    fetch(`https://ilyaidea.ir/api/input`)
+      .then(response => response.json())
+      .then(result => this.setDataAjax(result))
+      .catch(error => error);
+  }
+
+  ReloadInputNoAjax = () => {
+    const input = [...this.state.result];
+    this.setState({ input });
+  };
+
+  setDataAjax = result => {
+    this.setState({ result });
+    this.setState({ input: result });
   };
 
   handleClick = name => {
@@ -72,8 +41,9 @@ class Menu extends Component {
   };
 
   reloadStates = () => {
-    this.setState({ input: input });
+    this.ReloadInputNoAjax();
   };
+
   showStates = () => {
     console.log(this.state);
   };
@@ -93,8 +63,18 @@ class Menu extends Component {
   render() {
     const { input, searchTitle } = this.state;
     return (
-      <div>
+      <div className="ilya-menu">
+        <SearchBar value={searchTitle} onChange={this.onSearchChange}>
+          جستجو
+        </SearchBar>
+        <Content
+          input={input}
+          onClick={this.changeMenu}
+          pattern={searchTitle}
+          onDismiss={this.onDismiss}
+        />
         <button
+          className="test-button"
           onClick={() => {
             this.reloadStates('me');
           }}
@@ -104,23 +84,13 @@ class Menu extends Component {
         <br />
 
         <button
+          className="test-button"
           onClick={() => {
             this.showStates();
           }}
         >
           state
         </button>
-        <ul>
-          <SearchBar value={searchTitle} onChange={this.onSearchChange}>
-            جستجو
-          </SearchBar>
-          <Content
-            input={input}
-            onClick={this.changeMenu}
-            pattern={searchTitle}
-            onDismiss={this.onDismiss}
-          />
-        </ul>
       </div>
     );
   }
@@ -137,7 +107,7 @@ class Content extends Component {
   render() {
     const { input, pattern, onClick, onDismiss } = this.props;
     return (
-      <div>
+      <ul className="ilya-menu__content">
         {input.filter(isSearched(pattern)).map(item => {
           return (
             <li key={item.id} onClick={() => onClick(item.id)}>
@@ -146,7 +116,7 @@ class Content extends Component {
             </li>
           );
         })}
-      </div>
+      </ul>
     );
   }
 }
