@@ -76,12 +76,11 @@ class Menu extends Component {
         <button
           className="test-button"
           onClick={() => {
-            this.reloadStates('me');
+            this.reloadStates();
           }}
         >
           Reload
         </button>
-        <br />
 
         <button
           className="test-button"
