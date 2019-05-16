@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './App.css';
 import Menu from './Menu';
@@ -13,7 +14,6 @@ const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
 const PARAM_PAGE = 'page=';
 const PARAM_HPP = 'hitsPerPage=';
-
 // const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`;
 
 const isSearched = searchTerm => {
@@ -23,26 +23,35 @@ const isSearched = searchTerm => {
 };
 
 class App extends Component {
+  _isMounted = false;
   state = {
     results: null,
     searchKey: '',
     searchTerm: DEFAULT_QUERY,
-    searchTermInside: ''
+    searchTermInside: '',
+    error: null
+  };
+
+  needsToSearchTopStories = searchTerm => {
+    return !this.state.results[searchTerm];
   };
 
   componentDidMount() {
+    this._isMounted = true;
     const { searchTerm } = this.state;
     this.setState({ searchKey: searchTerm });
     this.fetchSearchTopStories(searchTerm);
   }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   fetchSearchTopStories(searchTerm, page = 0) {
-    fetch(
+    axios(
       `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`
     )
-      .then(response => response.json())
-      .then(result => this.setSearchTopStories(result))
-      .catch(error => error);
+      .then(result => this._isMounted && this.setSearchTopStories(result.data))
+      .catch(error => this._isMounted && this.setState({ error }));
   }
   setSearchTopStories = result => {
     const { hits, page } = result;
@@ -59,7 +68,9 @@ class App extends Component {
   onSearchSubmit = event => {
     const { searchTerm } = this.state;
     this.setState({ searchKey: searchTerm });
-    this.fetchSearchTopStories(searchTerm);
+    if (this.needsToSearchTopStories(searchTerm)) {
+      this.fetchSearchTopStories(searchTerm);
+    }
     event.preventDefault();
   };
 
@@ -83,19 +94,22 @@ class App extends Component {
   };
 
   testJS = () => {
-    const res = {
-      redux: { hits: [{ name: 'saeed' }, { name: 'saeed2' }], page: 2 }
-    };
-
-    const name = 'react';
-    const hits2 = [{ name: 'mykel' }, { name: 'me2' }];
-
-    const restfull = { ...res, [name]: { hits2 } };
-    console.log(restfull);
+    //   redux: { hits: [{ name: 'saeed' }, { name: 'saeed2' }], page: 2 }
+    // };
+    // const name = 'react';
+    // const hits2 = [{ name: 'mykel' }, { name: 'me2' }];
+    // const restfull = { ...res, [name]: { hits2 } };
+    // console.log(restfull);
   };
 
   render() {
-    const { searchTerm, results, searchKey, searchTermInside } = this.state;
+    const {
+      searchTerm,
+      results,
+      searchKey,
+      searchTermInside,
+      error
+    } = this.state;
 
     const page =
       (results && results[searchKey] && results[searchKey].page) || 0;
@@ -103,20 +117,22 @@ class App extends Component {
     const list =
       (results && results[searchKey] && results[searchKey].hits) || [];
 
-    if (!results) {
-      return (
-        <div>
-          <button onClick={this.testJS}>testJS </button>
-          <Menu />
-        </div>
-      );
-    }
+    // if (!results) {
+    //   return (
+    //     <div>
+    //       <button onClick={this.testJS}>testJS </button>
+    //       <Menu />
+    //     </div>
+    //   );
+    // }
+
     return (
       <div className="page">
+        <button onClick={this.testJS}>testJS </button>
         <Button onClick={this.hide} className="button-inline">
           show
         </Button>
-        <div id="adam" className="page unvisible ">
+        <div id="adam" className="page ">
           <div className="interactions">
             <Search
               value={searchTerm}
@@ -127,12 +143,17 @@ class App extends Component {
             </Search>
             <Search value={searchTermInside} onChange={this.onSearchInside} />
           </div>
-
-          <Table
-            list={list}
-            onDismiss={this.onDismiss}
-            pattern={searchTermInside}
-          />
+          {error ? (
+            <div className="interactions">
+              <p>Something went wrong.</p>
+            </div>
+          ) : (
+            <Table
+              list={list}
+              onDismiss={this.onDismiss}
+              pattern={searchTermInside}
+            />
+          )}
 
           <div className="interactions">
             <Button
@@ -142,8 +163,8 @@ class App extends Component {
             </Button>
           </div>
         </div>
-        <button onClick={this.testJS}>run me </button>
         <Menu />
+        <button onClick={this.testJS}>testJs2 </button>
       </div>
     );
   }

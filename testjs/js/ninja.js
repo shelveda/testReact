@@ -43,4 +43,4 @@ function isPrime(value) {
 isPrime(5);
 isPrime(6);
 isPrime(7);
-console.log(isPrime.answers);
+// console.log(isPrime.answers);

@@ -1,6 +1,3 @@
-// const root = document.querySelector('#root');
-// const root2 = document.querySelector('#root2');
-
 let input = [
   {
     id: 1,
@@ -59,6 +56,7 @@ class IlyaMenuGetSet {
   headerText = [];
 
   baseURL = '';
+
   setData = data => {
     this.data = data;
   };
@@ -86,22 +84,38 @@ class IlyaMenuGetSet {
   };
 }
 
-class parseItems extends IlyaMenuGetSet {
-  constructor(name, root, data, init_id = 1) {
+class SideMenu extends IlyaMenuGetSet {
+  constructor(name, root, data, APILink = null, init_id = 1) {
     super();
-    if (data == null) {
-      return console.log('Plase set Data');
-    }
+
     this.setRoot(root);
     this.name = name;
-    this.setData(data);
+
+    if (data == null) {
+      async function getAjax(link) {
+        let response = await fetch(link);
+        let data = await response.json();
+        return data;
+      }
+      getAjax(APILink)
+        .then(data => {
+          this.setData(data);
+        })
+        .then(() => this.initMenu(init_id));
+    } else {
+      this.setData(data);
+      this.initMenu(init_id);
+    }
+  }
+  id = '';
+
+  initMenu = init_id => {
     let div = document.createElement('div');
     div.className = 'ilya-menu-select';
     this.root.appendChild(div);
-
     this.listMaker(this.renderOutput(init_id));
     this.initHeader(init_id);
-  }
+  };
 
   pushHeaderText = input => {
     this.headerText.push(input);
@@ -129,13 +143,9 @@ class parseItems extends IlyaMenuGetSet {
     if (id == null) {
       return this.showHeaderText();
     }
-    const item = input.filter(item => item.id == id)[0];
+    const item = this.data.filter(item => item.id == id)[0];
     this.headerText.unshift(item.title);
     this.initHeader(item.parent_id);
-  };
-
-  setDataAJAX = baseURL => {
-    this.setData = baseURL;
   };
 
   renderOutput = id => {
@@ -225,7 +235,10 @@ class parseItems extends IlyaMenuGetSet {
       )
     );
   };
+  id = '';
   handleMenuClick = (input, event) => {
+    this.id = input.id;
+    this.onChange();
     const id = input.id[0];
     if (event == 'back') {
       this.popHeaderText();
@@ -240,11 +253,30 @@ class parseItems extends IlyaMenuGetSet {
     }
     this.listMaker(this.renderOutput(id));
   };
+  setCallback(call) {
+    this.callback = call;
+  }
+  getId = () => {
+    return this.id;
+  };
+
+  onChange = () => {
+    this.callback();
+  };
 }
 
-menu = new parseItems('saeed', '#root1', input, 1);
+url = `https://ilyaidea.ir/api/input`;
 
-const hello = ['saeed', 'davari'];
+menu = new SideMenu('saeed', '#root1', null, url, 1);
 
-// console.log(hello.slice(0));
-// console.log(hello.join('>>'));
+menu.setCallback(function() {
+  const id = menu.getId();
+  menu.setData(input);
+  document.querySelector('#root2').textContent = `${id[0]}`;
+});
+
+// function saeed() {
+//   const id = menu.getId();
+//   menu.setData(input);
+//   document.querySelector('#root2').textContent = `${id[0]}`;
+// }
